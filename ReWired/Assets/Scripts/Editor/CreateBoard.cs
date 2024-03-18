@@ -6,7 +6,8 @@ public class BoardCreator : Editor
     [MenuItem("GameObject/Presets/GameBoard")]
     static void CreateGameBoard()
     {
-        GameObject floorTilePrefab = LoadFloorTilePrefab();
+        GameObject floorTilePrefab = LoadFloorTilePrefab("FloorTile");
+        GameObject wallTilePrefab = LoadFloorTilePrefab("WallTile");
 
         if (floorTilePrefab == null)
         {
@@ -15,18 +16,16 @@ public class BoardCreator : Editor
         }
 
         GameObject board = CreateBoardGameObject();
-        Color evenTileColor = Color.black;
-        Color oddTileColor = Color.white;
 
-        CreateTiles(board, floorTilePrefab, evenTileColor, oddTileColor);
+        CreateTiles(board, floorTilePrefab, wallTilePrefab);
 
         RegisterUndoForBoard(board);
     }
 
     // Load the FloorTile prefab from the specified resource folder
-    static GameObject LoadFloorTilePrefab()
+    static GameObject LoadFloorTilePrefab(string tile)
     {
-        return Resources.Load<GameObject>("FloorTile");
+        return Resources.Load<GameObject>(tile);
     }
 
     // Create the board GameObject
@@ -36,14 +35,13 @@ public class BoardCreator : Editor
     }
 
     // Create tiles as children of the board
-    static void CreateTiles(GameObject board, GameObject floorTilePrefab, Color evenColor, Color oddColor)
+    static void CreateTiles(GameObject board, GameObject floorTilePrefab, GameObject wallTilePrefab)
     {
         for (int i = -9; i < 10; i++)
         {
             for (int j = -5; j < 6; j++)
             {
-                GameObject tile = InstantiateFloorTile(floorTilePrefab, board.transform, new Vector3(i, j, 0));
-                AdjustTileProperties(tile, i, j, evenColor, oddColor);
+                AdjustTileProperties(board, i, j, floorTilePrefab, wallTilePrefab);
             }
         }
     }
@@ -59,16 +57,16 @@ public class BoardCreator : Editor
     }
 
     // Adjust properties of each tile based on position and index
-    static void AdjustTileProperties(GameObject tile, int i, int j, Color evenColor, Color oddColor)
+    static void AdjustTileProperties(GameObject board, int i, int j, GameObject floorTilePrefab, GameObject wallTilePrefab)
     {
         if (IsEdgeTile(i, j))
         {
-            tile.GetComponent<SpriteRenderer>().color = evenColor;
+            GameObject tile = InstantiateFloorTile(wallTilePrefab, board.transform, new Vector3(i, j, 0));
             tile.tag = "Wall";
         }
         else
         {
-            tile.GetComponent<SpriteRenderer>().color = oddColor;
+            GameObject tile = InstantiateFloorTile(floorTilePrefab, board.transform, new Vector3(i, j, 0));
             tile.tag = "Floor";
         }
     }
