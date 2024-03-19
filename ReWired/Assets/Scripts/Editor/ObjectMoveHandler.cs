@@ -17,7 +17,8 @@ public static class ObjectMoveHandler
     private static void OnSceneGUI(SceneView sceneView)
     {
         Event e = Event.current;
-        Vector2 worldPosition = GetWorldPosition(sceneView, e.mousePosition);
+        Ray rayPosition = HandleUtility.GUIPointToWorldRay(e.mousePosition);
+        Vector2 worldPosition = rayPosition.origin;
 
         switch (e.type)
         {
