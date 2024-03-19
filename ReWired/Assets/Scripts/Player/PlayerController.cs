@@ -1,80 +1,115 @@
 using UnityEngine;
+using compTypes = GridObjects.Components.CompTypes;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public LayerMask floorLayer;
-
-    private Rigidbody2D rb;
-    private Vector2Int currentTile;
-    private Vector2 moveDirection = new Vector2(0,0);
+    public float moveSpeed = 2000f;
+    private LayerMask floorLayer;
+    private Vector2 moveDirection = Vector2.zero;
+    private Vector2 animationMove = Vector2.zero;
     private bool canMove = true;
-    private float timeSinceLastMove = 0f;
-    private float pauseTime = 0.1f;
+    private bool playerMoving = false;
+    private float pauseTime = 0.3f;
+    private float time = 0;
+    private Transform currentFloorTile;
 
-    void Start()
+
+    void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        currentTile = GetTilePosition(transform.position);
+        floorLayer = 1 << LayerMask.NameToLayer("Floor");
     }
 
     void Update()
     {
         if (!canMove)
         {
-            timeSinceLastMove += Time.deltaTime;
-
-            if (timeSinceLastMove >= pauseTime)
-            {
-                canMove = true;
-                timeSinceLastMove = 0f;
-            }
+            time = time + Time.deltaTime;
+            canMove = time >= pauseTime;
         }
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        Vector2 movetempDirection = new Vector2(moveX, moveY).normalized;
+        else time = 0f;
 
-        if(moveDirection == Vector2.zero)
+        Vector2 movetempDirection = Vector2.zero;
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //reset move
+            movetempDirection = Vector2.left;
         }
-        if (canMove)
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            bool canWalk = IsTileWalkable(currentTile, moveDirection);
+            movetempDirection = Vector2.right;
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            movetempDirection = Vector2.up;
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            movetempDirection = Vector2.down;
+        }
 
-            if(movetempDirection != Vector2.zero && moveDirection != movetempDirection && canWalk)
+        //Debug.Log(movetempDirection + " , " + canMove);
+
+        if (movetempDirection == Vector2.zero)
+        {
+            canMove = true;
+            moveDirection = Vector2.zero;
+            animationMove= Vector2.zero;
+        }
+        else if (canMove && !playerMoving)
+        {
+            if(currentFloorTile == null)
+                currentFloorTile = this.transform.parent;
+            bool canWalk = IsTileWalkable(currentFloorTile);
+            if (movetempDirection != Vector2.zero && moveDirection != movetempDirection && canWalk)
             {
-                // Add a directional movement not adding rb anymore
+                moveDirection = movetempDirection;
+                TryMove(movetempDirection);
+                canMove = false;
             }
             else if (movetempDirection != Vector2.zero && canWalk)
             {
-                rb.velocity = moveDirection * moveSpeed;
-                currentTile += Vector2Int.RoundToInt(moveDirection);
+                TryMove(movetempDirection);
+            }
+        }
 
+        if (playerMoving)
+        {
+            float step = moveSpeed * Time.deltaTime;
+            animationMove = Vector2.Lerp(animationMove, Vector2.zero, step);
+
+            if (Vector3.Distance(animationMove, Vector2.zero) < 0.65f)
+            {
+                transform.localPosition = Vector2.zero;
+                currentFloorTile = null;
+                playerMoving = false;
             }
         }
     }
 
-    private bool IsTileWalkable(Vector2Int currentTile, Vector2 direction)
+    private void TryMove(Vector2 direction)
     {
-        float tileSize = 1f;
-
-        //changed tiling
-
-        // RaycastHit2D hit = Physics2D.Raycast(currentTile * tileSize, direction, tileSize, floorLayer);
-        // if (hit.collider != null)
-        // {
-        //     FloorTile floorTile = hit.collider.GetComponent<FloorTile>();
-        //     if (floorTile != null)
-        //     {
-        //         return floorTile.IsWalkable();
-        //     }
-        // }
-        return false;
+        Transform nextFloorTile = GetFloorTileTransform(direction);
+        //Debug.Log("hit: " + nextFloorTile.gameObject.tag);
+        if (nextFloorTile != null && IsTileWalkable(nextFloorTile))
+        {
+            //Debug.Log("hit: " + nextFloorTile.position + " , " + transform.position);
+            currentFloorTile = nextFloorTile;
+            transform.SetParent(currentFloorTile);
+            animationMove = transform.localPosition;
+            playerMoving = true;
+        }
     }
 
-    private Vector2Int GetTilePosition(Vector2 position)
+    private bool IsTileWalkable(Transform floorTile)
     {
-        return new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y));
+        return floorTile != null && floorTile.GetComponent<compTypes.CanWalk>().isWalkable() == true;
     }
+
+    private Transform GetFloorTileTransform(Vector2 direction)
+    {
+        //Debug.Log(direction);
+        RaycastHit2D hit = Physics2D.CircleCast(new Vector2(transform.position.x, transform.position.y) + direction, 0.45f, direction, 0.0f, floorLayer);
+        //Debug.DrawLine(new Vector2(transform.position.x, transform.position.y) + direction, new Vector2(transform.position.x + direction.x, transform.position.y + direction.y), Color.blue);
+        return hit.collider.transform != null && hit.collider.CompareTag("Floor") ? hit.transform : null;
+    }
+
 }
