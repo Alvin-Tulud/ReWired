@@ -31,8 +31,12 @@ public class SceneViewDragHandler : Editor
     static void HandleDragEvent(SceneView sceneView, Event currentEvent)
     {
         Vector2 mousePosition = currentEvent.mousePosition;
-        mousePosition.y = sceneView.camera.pixelHeight - mousePosition.y;
-        Vector2 worldPosition = sceneView.camera.ScreenToWorldPoint(mousePosition);
+
+        Ray rayPosition = HandleUtility.GUIPointToWorldRay(mousePosition);
+
+        Vector2 worldPosition = rayPosition.origin;
+
+        Debug.Log(worldPosition);
         Vector2 direction = Vector2.zero;
         RaycastHit2D hitInfo = Physics2D.Raycast(worldPosition, direction);
 
