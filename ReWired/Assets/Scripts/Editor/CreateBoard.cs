@@ -37,9 +37,9 @@ public class BoardCreator : Editor
     // Create tiles as children of the board
     static void CreateTiles(GameObject board, GameObject floorTilePrefab, GameObject wallTilePrefab)
     {
-        for (int i = -9; i < 10; i++)
+        for (int i = -10; i < 10; i++)
         {
-            for (int j = -5; j < 6; j++)
+            for (int j = -6; j < 6; j++)
             {
                 AdjustTileProperties(board, i, j, floorTilePrefab, wallTilePrefab);
             }
@@ -61,12 +61,12 @@ public class BoardCreator : Editor
     {
         if (IsEdgeTile(i, j))
         {
-            GameObject tile = InstantiateFloorTile(wallTilePrefab, board.transform, new Vector3(i, j, 0));
+            GameObject tile = InstantiateFloorTile(wallTilePrefab, board.transform, new Vector3(i + .5f, j + .5f, 0));
             tile.tag = "Wall";
         }
         else
         {
-            GameObject tile = InstantiateFloorTile(floorTilePrefab, board.transform, new Vector3(i, j, 0));
+            GameObject tile = InstantiateFloorTile(floorTilePrefab, board.transform, new Vector3(i + .5f, j + .5f, 0));
             tile.tag = "Floor";
         }
     }
@@ -74,7 +74,7 @@ public class BoardCreator : Editor
     // Check if the tile is on the edge of the board
     static bool IsEdgeTile(int i, int j)
     {
-        return i == -9 || i == 9 || j == -5 || j == 5;
+        return i <= -10 || i >= 9 || j <= -6 || j >= 5;
     }
 
     // Register the board for Undo
