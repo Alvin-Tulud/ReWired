@@ -12,5 +12,10 @@ namespace GridObjects.Components.CompTypes
         {
             return walkable;
         }
+
+        public void setWalkable(bool walk)
+        {
+            walkable = walk;
+        }
     }
 }
