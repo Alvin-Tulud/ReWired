@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Floor
+  - BatteryContainer
   layers:
   - Default
   - TransparentFX
