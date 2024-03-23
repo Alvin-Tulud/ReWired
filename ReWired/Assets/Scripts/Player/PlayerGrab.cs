@@ -72,8 +72,7 @@ public class PlayerGrab : MonoBehaviour
                 Debug.Log("BatteryContainer: Off");
             }
         }
-        if(hold.transform.parent.transform.childCount < 2)
-            hold.transform.parent.GetComponent<compTypes.CanWalk>().setWalkable(true);
+        hold.transform.parent.GetComponent<compTypes.CanWalk>().setWalkable(true);
         hold.transform.parent = this.transform;
         pControl.setSubscribed(true, dir);
         isSubbed = true;

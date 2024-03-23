@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isSubscribed = false;
     private Vector2 subDirection = Vector2.zero;
 
+    private GameObject colorObject = null;
+
 
     void Awake()
     {
@@ -26,6 +28,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(colorObject != null && colorObject != transform.parent.GetChild(0).gameObject)
+        {
+            Renderer objectRenderer = colorObject.GetComponent<Renderer>();
+            Material objectMaterial = objectRenderer.material;
+            objectMaterial.SetFloat("_IsPlayerOnObject", 0.0f);
+            colorObject = null;
+        }
         if (!canMove)
         {
             time = time + Time.deltaTime;
@@ -74,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 TryMove(movetempDirection);
             }
+
         }
 
         if (playerMoving)
@@ -83,6 +93,13 @@ public class PlayerMovement : MonoBehaviour
             if (Vector3.Distance(animationMove, Vector2.zero) < 0.65f)
             {
                 transform.localPosition = Vector2.zero;
+                if(this.transform.parent.GetChild(0).gameObject.CompareTag("Button"))
+                {
+                    colorObject = this.transform.parent.GetChild(0).gameObject;
+                    Renderer objectRenderer = colorObject.GetComponent<Renderer>();
+                    Material objectMaterial = objectRenderer.material;
+                    objectMaterial.SetFloat("_IsPlayerOnObject", 1.0f);
+                }
                 currentFloorTile = null;
                 playerMoving = false;
             }
@@ -164,8 +181,14 @@ public class PlayerMovement : MonoBehaviour
 
     bool tagConditons(Transform fTile)
     {
-        if(fTile.childCount > 1)
-            return false;
+        if(fTile != null && fTile.childCount > 1)
+        {
+            for(int i = 0; i < fTile.childCount; i++)
+            {
+                if(fTile.GetChild(i).gameObject.CompareTag("Battery"))
+                return false;
+            }
+        }
         return true;
     }
 
