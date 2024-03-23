@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1525093065115310865}
   - component: {fileID: 5736667600407196344}
   - component: {fileID: 2908613443551229928}
-  m_Layer: 0
+  - component: {fileID: -8407393895576266298}
+  m_Layer: 7
   m_Name: BatteryContainer
-  m_TagString: Untagged
+  m_TagString: BatteryContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 101243461
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.38679248, g: 0.38460308, b: 0.38460308, a: 1}
@@ -141,5 +142,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dd94f8db1dc37a4a98fba9a68b2aba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8407393895576266298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2752569700152146258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99de40d9e8023184498416c7a76f3ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
