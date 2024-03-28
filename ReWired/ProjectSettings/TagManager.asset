@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - BatteryContainer
   - Battery
+  - Button
   layers:
   - Default
   - TransparentFX
