@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Floor
   - BatteryContainer
+  - Battery
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Items
   - 
   - 
   - 
@@ -47,8 +48,14 @@ TagManager:
   - name: Ground
     uniqueID: 328957611
     locked: 0
+  - name: Containers
+    uniqueID: 101243461
+    locked: 0
   - name: Player
     uniqueID: 1496697911
+    locked: 0
+  - name: Items
+    uniqueID: 1023550925
     locked: 0
   - name: Editor
     uniqueID: 734764117

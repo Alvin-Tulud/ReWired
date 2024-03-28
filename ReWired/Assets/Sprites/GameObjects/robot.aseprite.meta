@@ -74,7 +74,7 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
@@ -86,7 +86,7 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 4
       width: 10
       height: 12
-    spriteID: 6971f04fb7e2a814d88396fd53ea9288
+    spriteID: cf9bf77bb86d85d41bc34ccf1b1e0299
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -155,7 +155,7 @@ ScriptedImporter:
         y: 3
         width: 10
         height: 12
-      spriteId: 6971f04fb7e2a814d88396fd53ea9288
+      spriteId: cf9bf77bb86d85d41bc34ccf1b1e0299
     linkedCells: []
     parentIndex: -1
   platformSettings:
