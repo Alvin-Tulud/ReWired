@@ -5,19 +5,11 @@ using UnityEngine;
 public class DrawWire : MonoBehaviour
 {
     Transform otherWireNode;
-    int childNodeIndex;
     LineRenderer wireLine;
     // Start is called before the first frame update
     void Start()
     {
-        childNodeIndex = transform.GetSiblingIndex();
-
-        if (childNodeIndex == 0)
-            otherWireNode = transform.parent.GetChild(1);
-        else
-            otherWireNode = transform.parent.GetChild(0);
-
-
+        otherWireNode = GameObject.FindWithTag(transform.tag);
         wireLine = GetComponent<LineRenderer>();
     }
 
