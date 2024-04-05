@@ -13,6 +13,13 @@ public class PlayerMovement : MonoBehaviour
     private float time = 0;
     private Transform currentFloorTile;
 
+    private int facingDir = 0; //0 = up 1 = right 2 = down 3 = left
+
+    private bool isSubscribed = false;
+    private Vector2 subDirection = Vector2.zero;
+
+    private GameObject colorObject = null;
+
 
     void Awake()
     {
@@ -21,6 +28,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(colorObject != null && colorObject != transform.parent.GetChild(0).gameObject)
+        {
+            Renderer objectRenderer = colorObject.GetComponent<Renderer>();
+            Material objectMaterial = objectRenderer.material;
+            objectMaterial.SetFloat("_IsPlayerOnObject", 0.0f);
+            colorObject = null;
+        }
         if (!canMove)
         {
             time = time + Time.deltaTime;
@@ -69,16 +83,23 @@ public class PlayerMovement : MonoBehaviour
             {
                 TryMove(movetempDirection);
             }
+
         }
 
         if (playerMoving)
         {
             float step = moveSpeed * Time.deltaTime;
             animationMove = Vector2.Lerp(animationMove, Vector2.zero, step);
-
             if (Vector3.Distance(animationMove, Vector2.zero) < 0.65f)
             {
                 transform.localPosition = Vector2.zero;
+                if(this.transform.parent.GetChild(0).gameObject.CompareTag("Button"))
+                {
+                    colorObject = this.transform.parent.GetChild(0).gameObject;
+                    Renderer objectRenderer = colorObject.GetComponent<Renderer>();
+                    Material objectMaterial = objectRenderer.material;
+                    objectMaterial.SetFloat("_IsPlayerOnObject", 1.0f);
+                }
                 currentFloorTile = null;
                 playerMoving = false;
             }
@@ -87,11 +108,57 @@ public class PlayerMovement : MonoBehaviour
 
     private void TryMove(Vector2 direction)
     {
-        Transform nextFloorTile = GetFloorTileTransform(direction);
         //Debug.Log("hit: " + nextFloorTile.gameObject.tag);
-        if (nextFloorTile != null && IsTileWalkable(nextFloorTile))
+        
+        Transform playerDir = transform.GetChild(0).transform;
+        if(direction.x > .1f)
         {
-            //Debug.Log("hit: " + nextFloorTile.position + " , " + transform.position);
+            playerDir.rotation = Quaternion.Euler(0f, 0f, -90f);
+            playerDir.localPosition = new Vector2(.1f,0f);
+            facingDir = 1;
+        }
+        else if(direction.x < -.1f)
+        {
+            playerDir.rotation = Quaternion.Euler(0f, 0f, 90f);
+            playerDir.localPosition = new Vector2(-.1f,0f);
+            facingDir = 3;
+        }
+        else if(direction.y < -.1f)
+        {
+            playerDir.rotation = Quaternion.Euler(0f, 0f, 180f);
+            playerDir.localPosition = new Vector2(0f,-0.1f);
+            facingDir = 2;
+        }
+        else if(direction.y > .1f)
+        {
+            playerDir.rotation = Quaternion.Euler(0f, 0f, 0f);
+            playerDir.localPosition = new Vector2(0f,0.1f);
+            facingDir = 0;
+        }
+
+        if(isSubscribed)
+        {
+            direction = direction + subDirection;
+        }
+
+        Transform nextFloorTile = GetFloorTileTransform(direction);
+
+        if(isSubscribed && !tagConditons(nextFloorTile))
+        {
+            direction = direction - subDirection;
+            nextFloorTile = GetFloorTileTransform(direction);
+            return;
+        }
+
+        if (nextFloorTile != null && (IsTileWalkable(nextFloorTile) || (isSubscribed && nextFloorTile.GetChild(0).gameObject.CompareTag("BatteryContainer"))))
+        {
+            if(isSubscribed)
+            {
+                direction = direction - subDirection;
+                nextFloorTile = GetFloorTileTransform(direction);
+                if(!IsTileWalkable(nextFloorTile))
+                    return;
+            }
             currentFloorTile = nextFloorTile;
             transform.SetParent(currentFloorTile);
             animationMove = transform.localPosition;
@@ -110,6 +177,30 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.CircleCast(new Vector2(transform.position.x, transform.position.y) + direction, 0.45f, direction, 0.0f, floorLayer);
         //Debug.DrawLine(new Vector2(transform.position.x, transform.position.y) + direction, new Vector2(transform.position.x + direction.x, transform.position.y + direction.y), Color.blue);
         return hit.collider.transform != null && hit.collider.CompareTag("Floor") ? hit.transform : null;
+    }
+
+    bool tagConditons(Transform fTile)
+    {
+        if(fTile != null && fTile.childCount > 1)
+        {
+            for(int i = 0; i < fTile.childCount; i++)
+            {
+                if(fTile.GetChild(i).gameObject.CompareTag("Battery"))
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int getDirection()
+    {
+        return facingDir;
+    }
+
+    public void setSubscribed(bool subscribed, Vector2 subDir)
+    {
+        isSubscribed = subscribed;
+        subDirection = subDir;
     }
 
 }

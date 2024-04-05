@@ -4,13 +4,6 @@ using UnityEngine;
 using comptypes = GridObjects.Components.CompTypes;
 public class BatteryContainerCheck : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        comptypes.CanWalk canwalk = this.gameObject.transform.parent.transform.gameObject.GetComponent<comptypes.CanWalk>();
-        canwalk.setWalkable(false);
-        
-    }
 
     // Update is called once per frame
     void Update()

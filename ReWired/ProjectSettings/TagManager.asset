@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Wall
   - Floor
+  - BatteryContainer
+  - Battery
+  - Button
+  - Wire_Red
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - Items
+  - Wire
   - 
   - 
   - 
@@ -46,8 +50,14 @@ TagManager:
   - name: Ground
     uniqueID: 328957611
     locked: 0
+  - name: Containers
+    uniqueID: 101243461
+    locked: 0
   - name: Player
     uniqueID: 1496697911
+    locked: 0
+  - name: Items
+    uniqueID: 1023550925
     locked: 0
   - name: Editor
     uniqueID: 734764117
