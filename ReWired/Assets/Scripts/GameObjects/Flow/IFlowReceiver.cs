@@ -5,4 +5,7 @@ using UnityEngine;
 public interface IFlowReceiver
 {
     //uhhhhhhhhhhhhhhhhhhh :fire:
+
+    bool updated;
+
 }

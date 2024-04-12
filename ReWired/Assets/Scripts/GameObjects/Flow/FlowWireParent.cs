@@ -13,7 +13,7 @@ public class FlowWireParent : MonoBehaviour, IFlowReceiver
     //TODO: I need to add:
     // - New tag for the flow object so it knows whether colliding objects are flow wires
 
-    bool poweredState; //Whether the flow is on or off
+    int poweredState; //Whether the flow is on or off;  0=off, 1+=on
     bool updated; //Keeps track of whether a flow wire is updatedFalse, true when updating (so below function doesn't loop back into itself), false again when done updating
 
     void Start()
@@ -31,9 +31,10 @@ public class FlowWireParent : MonoBehaviour, IFlowReceiver
     }
 
     //Updates THIS flow tile's state only
-    public void selfUpdate(bool state)
+    //INPUT SHOULD BE 1 OR -1 ONLY!!!!
+    public void selfUpdate(int state)
     {
-        poweredState = state;
+        poweredState += state;
         updated = true;
     }
 }
