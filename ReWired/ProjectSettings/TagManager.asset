@@ -12,6 +12,7 @@ TagManager:
   - WireNub
   - Wire_Red
   - WireKnob
+  - Flow
   layers:
   - Default
   - TransparentFX

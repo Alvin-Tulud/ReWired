@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowWireParent : MonoBehaviour
+public class FlowWireParent : MonoBehaviour, IFlowReceiver
 {
-    /* The parent class for flow wires. 
-     * This has all the functions needed for flow wires to behave normally
-     * Every flow wire needs to inherit this, since it gives them its variables and functions.
+    /* The class for flow wires
+     * Used by all flow wires
      * 
      * if you're reading this, I AM FIXING IT AND WILL COME BACK LATER, trust :fire:
      */
@@ -14,7 +13,7 @@ public class FlowWireParent : MonoBehaviour
     //TODO: I need to add:
     // - New tag for the flow object so it knows whether colliding objects are flow wires
 
-    bool poweredState; //Whether the flow is on or off
+    int poweredState; //Whether the flow is on or off;  0=off, 1+=on
     bool updated; //Keeps track of whether a flow wire is updatedFalse, true when updating (so below function doesn't loop back into itself), false again when done updating
 
     void Start()
@@ -32,9 +31,10 @@ public class FlowWireParent : MonoBehaviour
     }
 
     //Updates THIS flow tile's state only
-    public void selfUpdate(bool state)
+    //INPUT SHOULD BE 1 OR -1 ONLY!!!!
+    public void selfUpdate(int state)
     {
-        poweredState = state;
+        poweredState += state;
         updated = true;
     }
 }
