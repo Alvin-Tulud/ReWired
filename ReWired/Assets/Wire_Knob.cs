@@ -29,6 +29,7 @@ public class Wire_Knob : MonoBehaviour
             {
                 hasNub = true;
                 //If powered, flip bool isPowered
+                Debug.Log("theres a nub here");
             }
         }
     }

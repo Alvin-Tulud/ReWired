@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 184213238851467931}
   - component: {fileID: 785988172450579408}
   - component: {fileID: 7623378043815230704}
+  - component: {fileID: -5621048814824610726}
   m_Layer: 8
   m_Name: WireNub
-  m_TagString: Wire_Red
+  m_TagString: WireNub
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,3 +207,15 @@ MonoBehaviour:
   wireColor:
     serializedVersion: 2
     rgba: 4278648099
+--- !u!114 &-5621048814824610726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491407614818496748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99de40d9e8023184498416c7a76f3ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -28,6 +28,8 @@ public class DrawWire : MonoBehaviour
         wireLine = GetComponent<LineRenderer>();
         wireLine.startColor = wireColor;
         wireLine.endColor = wireColor;
+        wireLine.startWidth = transform.localScale.x;
+        wireLine.endWidth = transform.localScale.x;
 
 
         //RaycastHit2D[] ray;

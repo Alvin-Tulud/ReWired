@@ -1771,6 +1771,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 677723371}
     m_Modifications:
+    - target: {fileID: 184213238851467931, guid: 4abce408dcfd271438e14edcffabcc18, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 184213238851467931, guid: 4abce408dcfd271438e14edcffabcc18, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1023550925
+      objectReference: {fileID: 0}
     - target: {fileID: 3491407614818496748, guid: 4abce408dcfd271438e14edcffabcc18, type: 3}
       propertyPath: m_Name
       value: WireNub
@@ -11630,6 +11638,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 654528857}
     m_Modifications:
+    - target: {fileID: 184213238851467931, guid: 4abce408dcfd271438e14edcffabcc18, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 184213238851467931, guid: 4abce408dcfd271438e14edcffabcc18, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1023550925
+      objectReference: {fileID: 0}
+    - target: {fileID: 785988172450579408, guid: 4abce408dcfd271438e14edcffabcc18, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3491407614818496748, guid: 4abce408dcfd271438e14edcffabcc18, type: 3}
       propertyPath: m_Name
       value: WireNub

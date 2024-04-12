@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (nextFloorTile != null && (IsTileWalkable(nextFloorTile) || (isSubscribed && nextFloorTile.GetChild(0).gameObject.CompareTag("BatteryContainer"))))
+        if (nextFloorTile != null && (IsTileWalkable(nextFloorTile) || (isSubscribed && nextFloorTile.GetChild(0) != null && (nextFloorTile.GetChild(0).gameObject.CompareTag("BatteryContainer") || nextFloorTile.GetChild(0).gameObject.CompareTag("WireKnob")))))
         {
             if(isSubscribed)
             {
