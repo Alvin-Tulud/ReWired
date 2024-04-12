@@ -4,23 +4,40 @@ using UnityEngine;
 
 public class DrawWire : MonoBehaviour
 {
-    Transform otherWireNode;
-    int childNodeIndex;
+    public Transform otherWireNode;
     LineRenderer wireLine;
     public Color32 wireColor;
+    LayerMask wireLayerMask;
+
+    static int Connect = 0;
+    private int WireID;
+
+    private void Awake()
+    {
+        //talking between all wirenubs to assign them ids
+        WireID = Connect;
+        Connect++;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        wireLine = GetComponent<LineRenderer>();
+        wireLayerMask = 1 << 8;
 
+
+        wireLine = GetComponent<LineRenderer>();
         wireLine.startColor = wireColor;
-        GameObject[] found = GameObject.FindGameObjectsWithTag(transform.tag);
-        foreach(GameObject WireNub in found){
-            if (wireLine.startColor == WireNub.GetComponent<LineRenderer>().startColor) {
-                otherWireNode = WireNub.transform;
-            }
-        }
+        wireLine.endColor = wireColor;
+
+
+        //RaycastHit2D[] ray;
+        //ray = Physics2D.RaycastAll(transform.position, transform.position, 1000f,wireLayerMask);
+        //foreach(RaycastHit2D WireNub in ray){
+        //    Debug.Log(WireNub.transform.name + " || " + WireNub.transform.position);
+        //    if (wireLine.startColor == WireNub.transform.GetComponent<LineRenderer>().startColor) {
+        //        otherWireNode = WireNub.transform;
+        //    }
+        //}
     }
 
     // Update is called once per frame
