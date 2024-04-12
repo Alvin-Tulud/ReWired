@@ -9,7 +9,7 @@ TagManager:
   - BatteryContainer
   - Battery
   - Button
-  - Wire_Red
+  - WireNub
   layers:
   - Default
   - TransparentFX
