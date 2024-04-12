@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowWireParent : MonoBehaviour
+public class FlowWireParent : MonoBehaviour, IFlowReceiver
 {
-    /* The parent class for flow wires. 
-     * This has all the functions needed for flow wires to behave normally
-     * Every flow wire needs to inherit this, since it gives them its variables and functions.
+    /* The class for flow wires
+     * Used by all flow wires
      * 
      * if you're reading this, I AM FIXING IT AND WILL COME BACK LATER, trust :fire:
      */
