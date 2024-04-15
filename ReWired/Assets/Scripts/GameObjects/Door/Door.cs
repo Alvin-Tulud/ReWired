@@ -1,6 +1,10 @@
 using UnityEngine;
 // using UnityEngine.SceneManagement;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.TextCore.Text;
+[RequireComponent(typeof(SpriteRenderer))]
+
 public class DoorScript : MonoBehaviour
 {
     public bool isOn = false;
@@ -8,6 +12,7 @@ public class DoorScript : MonoBehaviour
     // private void Awake() {
         
     // }
+    
 
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log("Enter!");
@@ -16,6 +21,8 @@ public class DoorScript : MonoBehaviour
         if (sceneIndex >= sceneCount) {
             SceneManager.LoadScene( sceneIndex + 1);
         }
+        
+        GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
         
     }
 }
