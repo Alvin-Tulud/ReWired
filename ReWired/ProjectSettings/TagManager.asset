@@ -9,6 +9,10 @@ TagManager:
   - BatteryContainer
   - Battery
   - Button
+  - WireNub
+  - Wire_Red
+  - WireKnob
+  - Flow
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - UI
   - 
   - Items
-  - 
+  - Wire
   - 
   - 
   - 
@@ -54,6 +58,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1496697911
+    locked: 0
+  - name: Wire
+    uniqueID: 3322911761
     locked: 0
   - name: Items
     uniqueID: 1023550925

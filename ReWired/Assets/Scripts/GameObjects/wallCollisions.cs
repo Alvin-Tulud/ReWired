@@ -6,14 +6,15 @@ using UnityEngine.Tilemaps;
 
 public class wallCollisions : MonoBehaviour
 {
-    public Tilemap tilemap; 
-    public List<Vector3> tileWorldLocations; // Use this for initialization
+    Tilemap tilemap; 
+    List<Vector3> tileWorldLocations; // Use this for initialization
 
 
     void Start () 
     { 
         tileWorldLocations = new List<Vector3>(); 
 
+        tilemap = GetComponent<Tilemap>();
 
         foreach (var pos in tilemap.cellBounds.allPositionsWithin) 
         { 

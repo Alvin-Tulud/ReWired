@@ -37,7 +37,7 @@ public class PlayerGrab : MonoBehaviour
             for(int i = 0; i < hit.collider.transform.childCount; i++)
             {
                 GameObject child = hit.collider.transform.GetChild(i).gameObject;
-                if (child.CompareTag("Battery"))
+                if (child.CompareTag("Battery") || child.CompareTag("WireNub"))
                 {
                     //Debug.Log("Battery picked up: " + hit.collider.name);
                     subscribe(child, direction);
