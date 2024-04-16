@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowWireParent : FlowReceiverParent
+public class FlowWire : FlowReceiverParent
 {
     /* The class for flow wires
      * Used by all flow wires
