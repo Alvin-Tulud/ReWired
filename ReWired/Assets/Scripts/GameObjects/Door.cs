@@ -1,6 +1,7 @@
 using UnityEngine;
 // using UnityEngine.SceneManagement;
 using UnityEngine.SceneManagement;
+[RequireComponent(typeof(SpriteRenderer))]
 public class DoorScript : MonoBehaviour
 {
     public bool isOn = false;
@@ -12,10 +13,13 @@ public class DoorScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log("Enter!");
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int sceneCount = SceneManager.sceneCountInBuildSettings;
-        if (sceneIndex >= sceneCount) {
+        int maxSceneIndex = SceneManager.sceneCountInBuildSettings - 1;
+        
+        if (sceneIndex < maxSceneIndex) {
             SceneManager.LoadScene( sceneIndex + 1);
         }
+
+        // gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("")
         
     }
 }
