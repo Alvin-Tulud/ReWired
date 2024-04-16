@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowWireParent : MonoBehaviour, IFlowReceiver
+public class FlowWireParent : MonoBehaviour
 {
     /* The class for flow wires
      * Used by all flow wires
@@ -22,7 +22,7 @@ public class FlowWireParent : MonoBehaviour, IFlowReceiver
     }
 
     //Updates the whole connected flow wire's state recursively.
-    public void updateWire(bool state)
+    public void updateWire(int state)
     {
         selfUpdate(state);
 

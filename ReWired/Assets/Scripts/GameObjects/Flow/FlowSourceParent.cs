@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class FlowSourceParent : MonoBehaviour
 {
+    //Flow source is buttons/etc. that power flow wires
+
+    int powered;
+
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //Update: 1.Change this thing's power state 2.trigger connected wires' recursive update
 }
