@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class FlowReceiverParent : MonoBehaviour
 {
     public int powered;
-    private bool updated;
+    private bool updated; //non-wire bits might not need updated
 
     public bool getUpdated()
     {
@@ -31,5 +31,6 @@ public abstract class FlowReceiverParent : MonoBehaviour
     //WireUpdate: for wires only and does not go here
 
     //Apply: Abstract class that gets defined per flow receiver
+    //Applies state change based on power level (powerUpdate only updates power level but doesn't trigger effects)
     public abstract void apply();
 }
