@@ -5,17 +5,6 @@ using UnityEngine;
 public abstract class FlowReceiverParent : MonoBehaviour
 {
     public int powered;
-    private bool updated; //non-wire bits might not need updated
-
-    public bool getUpdated()
-    {
-        return updated;
-    }
-    public void setUpdated(bool u)
-    {
-        updated = u;
-    }
-
  
 
     //Update: Changes power state then apply
