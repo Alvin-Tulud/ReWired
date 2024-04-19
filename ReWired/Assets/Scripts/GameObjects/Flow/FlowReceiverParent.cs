@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class FlowReceiverParent
+public class FlowReceiverParent
 {
     public int powered;
  
@@ -21,5 +21,8 @@ public abstract class FlowReceiverParent
 
     //Apply: Abstract class that gets defined per flow receiver
     //Applies state change based on power level (powerUpdate only updates power level but doesn't trigger effects)
-    public abstract void apply();
+    protected virtual void apply()
+    {
+        //hello bro
+    }
 }

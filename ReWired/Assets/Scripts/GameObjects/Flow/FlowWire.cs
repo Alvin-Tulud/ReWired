@@ -53,7 +53,7 @@ public class FlowWire : FlowReceiverParent
     }
 
     //1. Updates the wire itself, 2. Updates connected flow objects
-    public override void apply()
+    protected override void apply()
     {
         //p determines whether the flow's change was +1 or -1 so it knows what to update connected obj's with
         int p = 0; 
