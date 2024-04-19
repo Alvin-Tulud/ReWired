@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowSourceParent : MonoBehaviour
+public abstract class FlowSourceParent : MonoBehaviour
 {
     //Flow source is buttons/etc. that power flow wires
 
     int powered;
+
 
 
     // Start is called before the first frame update
