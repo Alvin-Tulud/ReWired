@@ -150,19 +150,22 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (nextFloorTile != null && (IsTileWalkable(nextFloorTile) || (isSubscribed && nextFloorTile.GetChild(0) != null && (nextFloorTile.GetChild(0).gameObject.CompareTag("BatteryContainer") || nextFloorTile.GetChild(0).gameObject.CompareTag("WireKnob")))))
+        if (nextFloorTile != null)
         {
-            if(isSubscribed)
+            if ((IsTileWalkable(nextFloorTile) || (nextFloorTile.GetChild(0) != null && (nextFloorTile.GetChild(0).gameObject.CompareTag("BatteryContainer") || nextFloorTile.GetChild(0).gameObject.CompareTag("WireKnob")))))
             {
-                direction = direction - subDirection;
-                nextFloorTile = GetFloorTileTransform(direction);
-                if(!IsTileWalkable(nextFloorTile))
-                    return;
+                if (isSubscribed)
+                {
+                    direction = direction - subDirection;
+                    nextFloorTile = GetFloorTileTransform(direction);
+                    if (!IsTileWalkable(nextFloorTile))
+                        return;
+                }
+                currentFloorTile = nextFloorTile;
+                transform.SetParent(currentFloorTile);
+                animationMove = transform.localPosition;
+                playerMoving = true;
             }
-            currentFloorTile = nextFloorTile;
-            transform.SetParent(currentFloorTile);
-            animationMove = transform.localPosition;
-            playerMoving = true;
         }
     }
 

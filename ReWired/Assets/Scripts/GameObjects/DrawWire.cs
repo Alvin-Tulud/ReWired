@@ -1,6 +1,8 @@
+using GridObjects.Components.CompTypes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class DrawWire : MonoBehaviour
 {
@@ -8,6 +10,12 @@ public class DrawWire : MonoBehaviour
     LineRenderer wireLine;
     public Color32 wireColor;
     LayerMask wireLayerMask;
+
+
+    RaycastHit2D[] rayright;
+    RaycastHit2D[] rayleft;
+    bool isGrabbed;
+
 
     static int Connect = 0;
     private int WireID;
@@ -40,6 +48,8 @@ public class DrawWire : MonoBehaviour
         //        otherWireNode = WireNub.transform;
         //    }
         //}
+
+        isGrabbed = false;
     }
 
     // Update is called once per frame
@@ -48,9 +58,72 @@ public class DrawWire : MonoBehaviour
         wireLine.SetPosition(0, transform.position);
         wireLine.SetPosition(1, otherWireNode.position);
 
+
+        Vector2 raydirright = transform.position - otherWireNode.position;
+        raydirright = Vector2.Perpendicular(raydirright);
+        raydirright.Normalize();
+        raydirright = raydirright * wireLine.endWidth/2;
+        raydirright.y += 0.5f;
+
+        Vector2 raydirleft = transform.position - otherWireNode.position;
+        raydirleft = Vector2.Perpendicular(raydirleft);
+        raydirleft.Normalize();
+        raydirleft = raydirleft * wireLine.endWidth/2;
+        raydirleft.y -= 0.5f;
+
+        //get left n right of the otherwirenode somehow
+        if (!isGrabbed)
+        {
+            rayright = Physics2D.RaycastAll(raydirright, (Vector2)otherWireNode.position + raydirright, 1000f, 1 >> 31);
+
+            foreach (RaycastHit2D ray in rayright)
+            {
+                if (ray.transform.gameObject.GetComponent<CanWalk>() != null)
+                {
+                    ray.transform.gameObject.GetComponent<CanWalk>().setWalkable(false);
+                }
+
+            }
+
+            rayleft = Physics2D.RaycastAll(raydirleft, (Vector2)otherWireNode.position + raydirleft, 1000f, 1 >> 31);
+
+            foreach (RaycastHit2D ray in rayleft)
+            {
+                if (ray.transform.gameObject.GetComponent<CanWalk>() != null)
+                {
+                    ray.transform.gameObject.GetComponent<CanWalk>().setWalkable(false);
+                }
+
+            }
+        }
         //if an if else for moving turn it on and else turn it off
         //make sure it is always pointing towards the other wire so like rotate it
     }
 
+    public void grabbed()
+    {
+        isGrabbed = true;
+        foreach (RaycastHit2D ray in rayright)
+        {
+            if (ray.transform.gameObject.GetComponent<CanWalk>() != null)
+            {
+                ray.transform.gameObject.GetComponent<CanWalk>().setWalkable(true);
+            }
 
+        }
+
+        foreach (RaycastHit2D ray in rayleft)
+        {
+            if (ray.transform.gameObject.GetComponent<CanWalk>() != null)
+            {
+                ray.transform.gameObject.GetComponent<CanWalk>().setWalkable(true);
+            }
+
+        }
+    }
+
+    public void notGrab()
+    {
+        isGrabbed = false;
+    }
 }

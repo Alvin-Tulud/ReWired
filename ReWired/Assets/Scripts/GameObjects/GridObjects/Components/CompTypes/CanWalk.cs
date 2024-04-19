@@ -6,6 +6,7 @@ namespace GridObjects.Components.CompTypes
     {
         [SerializeField]
         private bool walkable;
+        private bool isWall = false;
 
         
         public bool isWalkable()
@@ -15,7 +16,15 @@ namespace GridObjects.Components.CompTypes
 
         public void setWalkable(bool walk)
         {
-            walkable = walk;
+            if (!isWall)
+            {
+                walkable = walk;
+            }
+        }
+
+        public void setWall(bool wall)
+        {
+            isWall = wall;
         }
     }
 }

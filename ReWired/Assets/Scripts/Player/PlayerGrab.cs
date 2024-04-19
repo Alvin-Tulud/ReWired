@@ -71,6 +71,14 @@ public class PlayerGrab : MonoBehaviour
             {
                 Debug.Log("BatteryContainer: Off");
             }
+            else if (hold.transform.parent.GetChild(0).gameObject.CompareTag("Floor"))
+            {
+                if (hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>() == null)
+                {
+                    hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().grabbed();
+                }
+            }
+
         }
         hold.transform.parent.GetComponent<compTypes.CanWalk>().setWalkable(true);
         hold.transform.parent = this.transform;
@@ -88,6 +96,13 @@ public class PlayerGrab : MonoBehaviour
             if(floorTile.transform.GetChild(0).gameObject.CompareTag("BatteryContainer"))
             {
                 Debug.Log("BatteryContainer: On");
+            }
+            else if (floorTile.transform.GetChild(0).gameObject.CompareTag("BatteryContainer"))
+            {
+                if(floorTile.transform.GetChild(0).gameObject.GetComponent<DrawWire>() == null)
+                {
+                    floorTile.transform.GetChild(0).gameObject.GetComponent<DrawWire>().notGrab();
+                }
             }
         }
         pControl.setSubscribed(false, Vector2.zero);

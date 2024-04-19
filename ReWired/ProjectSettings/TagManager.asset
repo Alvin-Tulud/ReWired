@@ -23,7 +23,7 @@ TagManager:
   - 
   - Items
   - Wire
-  - 
+  - Player
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Containers
     uniqueID: 101243461
+    locked: 0
+  - name: PlayerFollow
+    uniqueID: 3432714795
     locked: 0
   - name: Player
     uniqueID: 1496697911

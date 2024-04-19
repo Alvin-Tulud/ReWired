@@ -41,6 +41,8 @@ public class wallCollisions : MonoBehaviour
             Debug.Log("wall || " + wall + " || " + "boardConversion || " + boardConversion + " || " + ray.transform.name + " || " + ray.transform.position);
 
             ray.transform.GetComponent<CanWalk>().setWalkable(false);
+            ray.transform.GetComponent<CanWalk>().setWall(true);
+
         }
     }
 
