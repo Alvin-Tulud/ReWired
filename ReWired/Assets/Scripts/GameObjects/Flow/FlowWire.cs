@@ -17,7 +17,8 @@ public class FlowWire : FlowReceiverParent
     //int powered and bool updated inherited from parent class
     private List<GameObject> connectedWires; //List of connected flow segments, populated by OnTriggerEnter2D
     private List<GameObject> connectedFlowObjects; //List of connected flow objects that aren't wires ^
-    private bool updated; //base case for
+    private bool updated; //base case for recursive update
+    public SpriteRenderer spriteRenderer; //sprite renderer for changing the color
 
     public bool getUpdated()
     {
@@ -56,17 +57,20 @@ public class FlowWire : FlowReceiverParent
     protected override void apply()
     {
         //p determines whether the flow's change was +1 or -1 so it knows what to update connected obj's with
-        int p = 0; 
+        int p = 0;
 
-        if(powered > 0) //if the wire is on
+
+        if (powered > 0) //if the wire is on
         {
             p = 1;
-            //change wire appearance
+            //lighten wire color if on
+            gameObject.GetComponent<SpriteRenderer>().material.color = new Color32(255, 255, 255, 255);
         }
         else //if the wire is off
         {
             p = -1;
-            //change wire appearance
+            //darken wire color if off
+            gameObject.GetComponent<SpriteRenderer>().material.color = new Color32(127, 127, 127, 255);
         }
 
 

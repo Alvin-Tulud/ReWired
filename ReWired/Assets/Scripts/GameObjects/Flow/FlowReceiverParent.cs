@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowReceiverParent
+public class FlowReceiverParent : MonoBehaviour
 {
     public int powered;
  
