@@ -11,7 +11,6 @@ public class DoorScript : MonoBehaviour
     // }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Enter!");
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         int maxSceneIndex = SceneManager.sceneCountInBuildSettings - 1;
         
