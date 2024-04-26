@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2840137249241346560}
   - component: {fileID: 1418954223031501975}
   - component: {fileID: 7559335820374941229}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FlowHorizontal
   m_TagString: Flow
   m_Icon: {fileID: 0}
