@@ -7,7 +7,7 @@ public abstract class FlowSourceParent : MonoBehaviour
     //Flow source is buttons/etc. that power flow wires
 
     bool powered;
-    private List<GameObject> connectedWires; //List of connected flow segments, populated by OnTriggerEnter2D
+    private List<GameObject> connectedWires; //List of connected flow segments, populated in Awake()
     private LayerMask FlowLayerMask;
 
 
@@ -16,11 +16,18 @@ public abstract class FlowSourceParent : MonoBehaviour
     {
         //layermask to only interact with flow wires
         FlowLayerMask = 1 << 10;
+        //Get all the flow wires touching the flow source
         RaycastHit2D[] flowRaycastList = Physics2D.CircleCastAll(gameObject.transform.position, 0.5f, Vector2.zero, 0, FlowLayerMask);
 
-        //convert the RaycastHit2d[] into gameObject[]
-        //then add to connectedwires
-        
+        //convert the flow wires from RaycastHit2D to normal GameObject
+        for(int i=0; i<flowRaycastList.Length; i++)
+        {
+            //convert the RaycastHit2D object into GameObject
+            GameObject g = flowRaycastList[i].transform.gameObject;
+            //add the GameObject to connectedWires
+            connectedWires.Add(g);
+        }
+ 
     }
 
     //Update: 1.Change this thing's power state 2.trigger connected wires' recursive update
