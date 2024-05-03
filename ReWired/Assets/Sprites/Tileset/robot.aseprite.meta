@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9b8086f4721eeaa49b8c6813ef8fe47b
+guid: 0f315f21e2badc94d83392691f30eda5
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 16
+    spritePixelsToUnits: 10
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -74,7 +74,7 @@ ScriptedImporter:
     fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
@@ -86,7 +86,7 @@ ScriptedImporter:
     fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638502646015390406
+  platformSettingsDirtyTick: 638502644163717674
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: trapdoor
+  - name: robot
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.4166667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 16
-    spriteID: b94586fa63dd4dd4ba9db9a3491dcb89
+      width: 10
+      height: 12
+    spriteID: cf9bf77bb86d85d41bc34ccf1b1e0299
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,18 +139,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: trapdoor_Frame_1
+  - name: robot_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0.11111111}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 28
-      width: 16
-      height: 9
-    spriteID: 2da3c62c0c93ca74da6d8b56905ca4ef
+      y: 24
+      width: 10
+      height: 12
+    spriteID: d4095a59776cccf499e6a9bd44bb813b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -158,19 +158,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 28}
-  - name: trapdoor_Frame_2
+    uvTransform: {x: 4, y: 24}
+  - name: robot_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: -1.6666667}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 45
-      width: 16
-      height: 3
-    spriteID: 5a8d40efa6b5d7346a05786a0c038e7e
+      y: 44
+      width: 10
+      height: 12
+    spriteID: 18ef1087dd2bae54abc53b8f8ee9fc05
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -178,20 +178,20 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 45}
+    uvTransform: {x: 4, y: 44}
   spriteSheetImportData:
-  - name: trapdoor_0
+  - name: robot_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 45
-      width: 16
-      height: 16
-    spriteID: 4c21da4d1c12927488a88e31f792cf55
+      y: 44
+      width: 10
+      height: 12
+    spriteID: c296b8399bd49c1448a47130953509f5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -200,18 +200,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: trapdoor_1
+  - name: robot_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 28
-      width: 16
-      height: 16
-    spriteID: b2604a3205eaaa04b83f5aaa569d837e
+      y: 24
+      width: 10
+      height: 12
+    spriteID: 6321c1758e285be499b1d645747c3e39
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -220,18 +220,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: trapdoor_2
+  - name: robot_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 16
-    spriteID: 8e51ee94ecb297045836289d11154748
+      width: 10
+      height: 12
+    spriteID: 177c9b99c4ce5884381b96b6ea8ff836
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -242,36 +242,36 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 1578565337
-    name: trapdoor
+    guid: 2025297426
+    name: robot
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: trapdoor_Frame_0
+    - name: robot_Frame_0
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 16
-        height: 16
-      spriteId: b94586fa63dd4dd4ba9db9a3491dcb89
-    - name: trapdoor_Frame_1
+        x: 3
+        y: 3
+        width: 10
+        height: 12
+      spriteId: cf9bf77bb86d85d41bc34ccf1b1e0299
+    - name: robot_Frame_1
       frameIndex: 1
       cellRect:
-        x: 0
-        y: 7
-        width: 16
-        height: 9
-      spriteId: 2da3c62c0c93ca74da6d8b56905ca4ef
-    - name: trapdoor_Frame_2
+        x: 3
+        y: 3
+        width: 10
+        height: 12
+      spriteId: d4095a59776cccf499e6a9bd44bb813b
+    - name: robot_Frame_2
       frameIndex: 2
       cellRect:
-        x: 0
-        y: 13
-        width: 16
-        height: 3
-      spriteId: 5a8d40efa6b5d7346a05786a0c038e7e
+        x: 3
+        y: 3
+        width: 10
+        height: 12
+      spriteId: 18ef1087dd2bae54abc53b8f8ee9fc05
     linkedCells: []
     parentIndex: -1
   platformSettings:
