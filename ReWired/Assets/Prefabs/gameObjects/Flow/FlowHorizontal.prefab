@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2840137249241346560}
   - component: {fileID: 1418954223031501975}
   - component: {fileID: 7559335820374941229}
+  - component: {fileID: 7586771968888216880}
   m_Layer: 10
   m_Name: FlowHorizontal
   m_TagString: Flow
@@ -130,3 +131,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.27, y: 0.07}
   m_EdgeRadius: 0
+--- !u!114 &7586771968888216880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3314119445721797178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6f7c3bab26f3e41a32cb4eb9f5c70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powered: 0
+  spriteRenderer: {fileID: 0}

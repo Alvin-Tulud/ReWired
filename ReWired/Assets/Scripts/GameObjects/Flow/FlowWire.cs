@@ -15,10 +15,15 @@ public class FlowWire : FlowReceiverParent
     // - New tag for the flow object so it knows whether colliding objects are flow wires
 
     //int powered and bool updated inherited from parent class
-    private List<GameObject> connectedWires; //List of connected flow segments, populated by OnTriggerEnter2D
-    private List<GameObject> connectedFlowObjects; //List of connected flow objects that aren't wires ^
+    private List<GameObject> connectedWires = new List<GameObject>(); //List of connected flow segments, populated by OnTriggerEnter2D
+    private List<GameObject> connectedFlowObjects = new List<GameObject>(); //List of connected flow objects that aren't wires ^
     private bool updated; //base case for recursive update
     public SpriteRenderer spriteRenderer; //sprite renderer for changing the color
+
+    private void Awake()
+    {
+        
+    }
 
     public bool getUpdated()
     {
@@ -73,7 +78,7 @@ public class FlowWire : FlowReceiverParent
             gameObject.GetComponent<SpriteRenderer>().material.color = new Color32(127, 127, 127, 255);
         }
 
-
+        Debug.Log("CONNECTED FLOW: " + connectedFlowObjects.Count);
         //Spreads flow's updated status to connected flow objects (not flow wires)
         foreach (GameObject o in connectedFlowObjects)
         {

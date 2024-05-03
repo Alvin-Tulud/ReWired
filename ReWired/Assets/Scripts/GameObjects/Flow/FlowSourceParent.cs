@@ -7,7 +7,7 @@ public abstract class FlowSourceParent : MonoBehaviour
     //Flow source is buttons/etc. that power flow wires
 
     bool powered;
-    private List<GameObject> connectedWires; //List of connected flow segments, populated in Awake()
+    private List<GameObject> connectedWires = new List<GameObject>(); //List of connected flow segments, populated in Awake()
     private LayerMask FlowLayerMask;
 
 
@@ -24,6 +24,7 @@ public abstract class FlowSourceParent : MonoBehaviour
         {
             //convert the RaycastHit2D object into GameObject
             GameObject g = flowRaycastList[i].transform.gameObject;
+            Debug.Log(g);
             //add the GameObject to connectedWires
             connectedWires.Add(g);
         }
@@ -53,9 +54,10 @@ public abstract class FlowSourceParent : MonoBehaviour
         {
             //the script of the flow wire
             FlowWire script = w.GetComponent<FlowWire>();
+            Debug.Log(w.GetComponent<FlowWire>().getUpdated());
 
             //Only update the wire if it hasn't been yet
-            if (!script.getUpdated()) //if updated==false
+            if (script.getUpdated() == false) //if updated==false
             {
                 script.powerUpdate(val); //recursive update the connected wire
             }

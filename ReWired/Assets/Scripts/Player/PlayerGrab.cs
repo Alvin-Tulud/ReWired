@@ -70,6 +70,9 @@ public class PlayerGrab : MonoBehaviour
             if(hold.transform.parent.GetChild(0).gameObject.CompareTag("BatteryContainer"))
             {
                 Debug.Log("BatteryContainer: Off");
+                //Andrew: Updates the battery container
+                Debug.Log(hold.transform.parent.GetChild(0).transform.name);
+                hold.transform.parent.GetChild(0).gameObject.GetComponent<BatteryContainerCheck>().updateFlowSource(false);
             }
             else if (hold.transform.parent.GetChild(0).gameObject.CompareTag("Floor"))
             {
@@ -96,6 +99,8 @@ public class PlayerGrab : MonoBehaviour
             if(floorTile.transform.GetChild(0).gameObject.CompareTag("BatteryContainer"))
             {
                 Debug.Log("BatteryContainer: On");
+                //Andrew: Updates the battery container
+                floorTile.transform.GetChild(0).gameObject.GetComponent<BatteryContainerCheck>().updateFlowSource(true);
             }
             else if (floorTile.transform.GetChild(0).gameObject.CompareTag("BatteryContainer"))
             {
