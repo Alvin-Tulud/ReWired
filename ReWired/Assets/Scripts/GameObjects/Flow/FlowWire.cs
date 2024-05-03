@@ -87,6 +87,8 @@ public class FlowWire : FlowReceiverParent
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        //I might replace all of this with the layermask stuff in FlowSourceParent
+
         //script is the parent script, used to check if the collided object is part of flow receivers
         //it has occurred to me that I could have just done this with layers but w/e
         FlowReceiverParent script = col.gameObject.GetComponent<FlowReceiverParent>();
