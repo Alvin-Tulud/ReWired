@@ -22,7 +22,36 @@ public class FlowWire : FlowReceiverParent
 
     private void Awake()
     {
-        
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        //darken wire color initially to signify it is off
+        spriteRenderer.material.color = new Color32(127, 127, 127, 255);
+        //^ (May change this in favor of having a dark sprite then lightening it upon initial power)
+
+        //Populates the wire's list of connected wires / flow objects
+
+        //Get everything touching the wire
+        RaycastHit2D[] flowRaycastList = Physics2D.CircleCastAll(gameObject.transform.position, 0.5f, Vector2.zero, 0);
+
+        //Splits the relevant RaycastHit2D's into either wires or flow receivers
+        for (int i = 0; i < flowRaycastList.Length; i++)
+        {
+            //convert the RaycastHit2D object into GameObject
+            GameObject g = flowRaycastList[i].transform.gameObject;
+            
+            if(g.GetComponent<FlowReceiverParent>() != null)
+            {
+                //If the obj is a flow wire, then add to the list of connectedwires
+                if ((g.tag == "Flow") && (g != this.gameObject)) //2nd part of the if() is to prevent it from adding itself
+                {
+                    connectedWires.Add(g);
+                }
+                //Otherwise, it's a non-wire flow receiver like a door
+                else
+                {
+                    connectedFlowObjects.Add(g);
+                }
+            }
+        }
     }
 
     public bool getUpdated()
@@ -40,6 +69,7 @@ public class FlowWire : FlowReceiverParent
         //powerUpdate self
         powered += p;
         setUpdated(true);
+        //Debug.Log("Power: " + powered);
 
         //trigger wireUpdate on connected flow wires who are not yet updated
         foreach (GameObject w in connectedWires)
@@ -69,22 +99,26 @@ public class FlowWire : FlowReceiverParent
         {
             p = 1;
             //lighten wire color if on
-            gameObject.GetComponent<SpriteRenderer>().material.color = new Color32(255, 255, 255, 255);
+            spriteRenderer.material.color = new Color32(255, 255, 255, 255);
         }
         else //if the wire is off
         {
             p = -1;
             //darken wire color if off
-            gameObject.GetComponent<SpriteRenderer>().material.color = new Color32(127, 127, 127, 255);
+            spriteRenderer.material.color = new Color32(127, 127, 127, 255);
         }
 
-        Debug.Log("CONNECTED FLOW: " + connectedFlowObjects.Count);
+        Debug.Log("CONNECTED FLOW: " + connectedWires.Count);
         //Spreads flow's updated status to connected flow objects (not flow wires)
         foreach (GameObject o in connectedFlowObjects)
         {
-            FlowReceiverParent script = o.gameObject.GetComponent<FlowReceiverParent>();
+            if (o.tag != "Flow")
+            {
+                FlowReceiverParent script = o.gameObject.GetComponent<FlowReceiverParent>();
 
-            script.powerUpdate(p);
+                script.powerUpdate(p);
+            }
+            
         }
 
         updated = false; //Lastly reset updated status
