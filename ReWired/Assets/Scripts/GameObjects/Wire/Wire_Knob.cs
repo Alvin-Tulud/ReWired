@@ -6,11 +6,13 @@ public class Wire_Knob : MonoBehaviour
 {
     bool isPowered;
     bool hasNub;
-    public Color32 WireColor;
+    public Color WireColor;
+    string WireHex;
+    string NubHex;
     // Start is called before the first frame update
     void Start()
     {
-        
+        WireHex = ColorUtility.ToHtmlStringRGBA(WireColor);
     }
 
     // Update is called once per frame
@@ -19,14 +21,20 @@ public class Wire_Knob : MonoBehaviour
         if (transform.parent.childCount > 1)
         {
             bool foundNub = false;
+
             for (int i = 0; i < transform.parent.childCount; i++)
             {
                 Transform child = transform.GetChild(i);
-                if (child.CompareTag("WireNub") &&
-                    WireColor == child.GetComponent<LineRenderer>().startColor)
+
+                if (child.CompareTag("WireNub"))
                 {
-                    hasNub = true;
-                    foundNub = true;
+                    NubHex = ColorUtility.ToHtmlStringRGBA(child.GetComponent<LineRenderer>().startColor);
+
+                    if (WireHex.CompareTo(NubHex) == 0)
+                    {
+                        hasNub = true;
+                        foundNub = true;
+                    }
                 }
             }
             if (!foundNub)
