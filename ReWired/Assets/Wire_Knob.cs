@@ -16,25 +16,27 @@ public class Wire_Knob : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    } 
-
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("WireNub"))
+        if (transform.parent.childCount > 1)
         {
-            if (collision.gameObject.GetComponent<LineRenderer>().startColor == WireColor)
+            bool foundNub = false;
+            for (int i = 0; i < transform.parent.childCount; i++)
             {
-                hasNub = true;
-                //If powered, flip bool isPowered
-                Debug.Log("theres a nub here");
+                Transform child = transform.GetChild(i);
+                if (child.CompareTag("WireNub") &&
+                    WireColor == child.GetComponent<LineRenderer>().startColor)
+                {
+                    hasNub = true;
+                    foundNub = true;
+                }
+            }
+            if (!foundNub)
+            {
+                hasNub = false;
             }
         }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        hasNub= false;
-    }
+        else
+        {
+            hasNub = false;
+        }
+    } 
 }
