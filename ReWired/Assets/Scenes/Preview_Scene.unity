@@ -3606,6 +3606,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.b
+      value: 0.023529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.g
+      value: 0.99215686
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.r
+      value: 0.13725491
+      objectReference: {fileID: 0}
     - target: {fileID: 5981688261481891532, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
       propertyPath: m_Name
       value: Wire_Knob
@@ -5259,6 +5271,18 @@ PrefabInstance:
     - target: {fileID: 1993358150728517124, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.b
+      value: 0.023529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.g
+      value: 0.99215686
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.r
+      value: 0.13725491
       objectReference: {fileID: 0}
     - target: {fileID: 5981688261481891532, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
       propertyPath: m_Name

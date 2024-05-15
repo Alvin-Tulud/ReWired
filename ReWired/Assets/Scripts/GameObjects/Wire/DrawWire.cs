@@ -63,18 +63,18 @@ public class DrawWire : MonoBehaviour
         raydirright = Vector2.Perpendicular(raydirright);
         raydirright.Normalize();
         raydirright = raydirright * wireLine.endWidth/2;
-        raydirright.y += 0.5f;
+        raydirright.y += 0.1f;
 
         Vector2 raydirleft = transform.position - otherWireNode.position;
         raydirleft = Vector2.Perpendicular(raydirleft);
         raydirleft.Normalize();
         raydirleft = raydirleft * wireLine.endWidth/2;
-        raydirleft.y -= 0.5f;
+        raydirleft.y -= 0.1f;
 
         //get left n right of the otherwirenode somehow
         if (!isGrabbed)
         {
-            rayright = Physics2D.RaycastAll(raydirright, (Vector2)otherWireNode.position + raydirright, 1000f, 1 >> 31);
+            rayright = Physics2D.RaycastAll(raydirright, (Vector2)otherWireNode.position + raydirright, 1000f, 1 << 31);
 
             foreach (RaycastHit2D ray in rayright)
             {
@@ -85,7 +85,7 @@ public class DrawWire : MonoBehaviour
 
             }
 
-            rayleft = Physics2D.RaycastAll(raydirleft, (Vector2)otherWireNode.position + raydirleft, 1000f, 1 >> 31);
+            rayleft = Physics2D.RaycastAll(raydirleft, (Vector2)otherWireNode.position + raydirleft, 1000f, 1 << 31);
 
             foreach (RaycastHit2D ray in rayleft)
             {

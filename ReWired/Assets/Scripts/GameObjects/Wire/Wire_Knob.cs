@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wire_Knob : MonoBehaviour
+public class Wire_Knob : FlowReceiverParent
 {
     bool isPowered;
     bool hasNub;
@@ -24,7 +24,7 @@ public class Wire_Knob : MonoBehaviour
 
             for (int i = 0; i < transform.parent.childCount; i++)
             {
-                Transform child = transform.GetChild(i);
+                Transform child = transform.parent.GetChild(i);
 
                 if (child.CompareTag("WireNub"))
                 {
