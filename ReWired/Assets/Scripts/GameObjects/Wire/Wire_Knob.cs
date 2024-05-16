@@ -9,10 +9,13 @@ public class Wire_Knob : FlowReceiverParent
     public Color WireColor;
     string WireHex;
     string NubHex;
+    SpriteRenderer KnobColor;
     // Start is called before the first frame update
     void Start()
     {
         WireHex = ColorUtility.ToHtmlStringRGBA(WireColor);
+        KnobColor = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        KnobColor.color = new Color(WireColor.r, WireColor.g, WireColor.b, 1);
     }
 
     // Update is called once per frame
