@@ -30,5 +30,10 @@ public class DoorScript : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
