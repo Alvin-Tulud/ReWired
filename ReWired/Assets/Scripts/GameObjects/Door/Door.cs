@@ -18,11 +18,13 @@ public class DoorScript : MonoBehaviour
 
                 if (child.CompareTag("Player"))
                 {
+                    Debug.Log("Player Here");
                     int sceneIndex = SceneManager.GetActiveScene().buildIndex;
                     int maxSceneIndex = SceneManager.sceneCountInBuildSettings - 1;
 
                     if (sceneIndex < maxSceneIndex && isOn)
                     {
+                        Debug.Log("Player Win");
                         SceneManager.LoadScene(sceneIndex + 1);
                     }
                 }
