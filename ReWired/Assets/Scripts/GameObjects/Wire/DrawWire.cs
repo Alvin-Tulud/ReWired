@@ -15,6 +15,7 @@ public class DrawWire : MonoBehaviour
     //RaycastHit2D[] rayright;
     //RaycastHit2D[] rayleft;
     public RaycastHit2D[] tilesStates;
+    public List<GameObject> tilesStateSwitched;
     bool isGrabbed;
 
 
@@ -50,24 +51,25 @@ public class DrawWire : MonoBehaviour
         wireLine.SetPosition(0, transform.position);
         wireLine.SetPosition(1, otherWireNode.position);
 
-        tilesStates = Physics2D.CircleCastAll(transform.position, transform.localScale.x, otherWireNode.position, 1000f, 1 << 31);
+        Vector2 direction = otherWireNode.position - transform.position;
+        float distance = Mathf.Pow(Mathf.Pow(otherWireNode.position.x - transform.position.x, 2) + 
+            Mathf.Pow(otherWireNode.position.y - transform.position.y, 2), 0.5f);
 
-        Debug.DrawLine(transform.position, otherWireNode.position,Color.red, 1000f);
+        tilesStates = Physics2D.CircleCastAll(transform.position, 0.35f, direction, distance, 1 << 8 | 1 << 31);
+        foreach (RaycastHit2D ray in tilesStates)
+        {
+            if (!tilesStateSwitched.Contains(ray.transform.gameObject))
+            {
+                tilesStateSwitched.Add(ray.transform.gameObject);
+            }
+        }
 
+        
 
-        //Vector2 raydirright = transform.position - otherWireNode.position;
-        //raydirright = Vector2.Perpendicular(raydirright);
-        //raydirright.Normalize();
-        //raydirright = raydirright * wireLine.endWidth/2;
-        //raydirright.y += 0.1f;
-        //
-        //Vector2 raydirleft = transform.position - otherWireNode.position;
-        //raydirleft = Vector2.Perpendicular(raydirleft);
-        //raydirleft.Normalize();
-        //raydirleft = raydirleft * wireLine.endWidth/2;
-        //raydirleft.y -= 0.1f;
+        Debug.DrawLine(transform.position, otherWireNode.position,Color.red, distance);
+        Debug.DrawRay(transform.position, otherWireNode.position, Color.black, distance);
+        Debug.DrawRay(transform.position, direction, Color.blue, distance);
 
-        //get left n right of the otherwirenode somehow
         if (!isGrabbed)
         {
             foreach (var tile in tilesStates)
@@ -77,35 +79,7 @@ public class DrawWire : MonoBehaviour
                     tile.transform.gameObject.GetComponent<CanWalk>().setWalkable(false);
                 }
             }
-
-            //rayright = Physics2D.RaycastAll(raydirright, (Vector2)otherWireNode.position + raydirright, 1000f, 1 << 31);
-            //
-            //Debug.DrawRay(raydirright, (Vector2)otherWireNode.position + raydirright, Color.red, 5f);
-            //
-            //foreach (RaycastHit2D ray in rayright)
-            //{
-            //    if (ray.transform.gameObject.GetComponent<CanWalk>() != null)
-            //    {
-            //        ray.transform.gameObject.GetComponent<CanWalk>().setWalkable(false);
-            //    }
-            //
-            //}
-            //
-            //rayleft = Physics2D.RaycastAll(raydirleft, (Vector2)otherWireNode.position + raydirleft, 1000f, 1 << 31);
-            //
-            //Debug.DrawRay(raydirleft, (Vector2)otherWireNode.position + raydirleft, Color.blue, 5f);
-            //
-            //foreach (RaycastHit2D ray in rayleft)
-            //{
-            //    if (ray.transform.gameObject.GetComponent<CanWalk>() != null)
-            //    {
-            //        ray.transform.gameObject.GetComponent<CanWalk>().setWalkable(false);
-            //    }
-            //
-            //}
         }
-        //if an if else for moving turn it on and else turn it off
-        //make sure it is always pointing towards the other wire so like rotate it
     }
 
     public void grabbed()
@@ -119,24 +93,6 @@ public class DrawWire : MonoBehaviour
                 tile.transform.gameObject.GetComponent<CanWalk>().setWalkable(true);
             }
         }
-
-        //foreach (RaycastHit2D ray in rayright)
-        //{
-        //    if (ray.transform.gameObject.GetComponent<CanWalk>() != null)
-        //    {
-        //        ray.transform.gameObject.GetComponent<CanWalk>().setWalkable(true);
-        //    }
-        //
-        //}
-        //
-        //foreach (RaycastHit2D ray in rayleft)
-        //{
-        //    if (ray.transform.gameObject.GetComponent<CanWalk>() != null)
-        //    {
-        //        ray.transform.gameObject.GetComponent<CanWalk>().setWalkable(true);
-        //    }
-        //
-        //}
     }
 
     public void notGrab()
