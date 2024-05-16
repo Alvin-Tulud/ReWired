@@ -1,24 +1,32 @@
 using UnityEngine;
 // using UnityEngine.SceneManagement;
 using UnityEngine.SceneManagement;
-[RequireComponent(typeof(SpriteRenderer))]
+
+
 public class DoorScript : MonoBehaviour
 {
     public bool isOn = false;
 
-    // private void Awake() {
-        
-    // }
+    private void Update()
+    {
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int maxSceneIndex = SceneManager.sceneCountInBuildSettings - 1;
-        
-        if (sceneIndex < maxSceneIndex) {
-            SceneManager.LoadScene( sceneIndex + 1);
+        if (transform.parent.childCount > 1)
+        {
+            for (int i = 0; i < transform.parent.childCount; i++)
+            {
+                Transform child = transform.parent.GetChild(i);
+
+                if (child.CompareTag("Player"))
+                {
+                    int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+                    int maxSceneIndex = SceneManager.sceneCountInBuildSettings - 1;
+
+                    if (sceneIndex < maxSceneIndex && isOn)
+                    {
+                        SceneManager.LoadScene(sceneIndex + 1);
+                    }
+                }
+            }
         }
-
-        // gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("")
-        
     }
 }
