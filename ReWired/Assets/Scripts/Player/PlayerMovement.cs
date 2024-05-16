@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(colorObject != null && colorObject != transform.parent.GetChild(0).gameObject)
+        if (colorObject != null && colorObject != transform.parent.GetChild(0).gameObject)
         {
             Renderer objectRenderer = colorObject.GetComponent<Renderer>();
             Material objectMaterial = objectRenderer.material;
@@ -66,13 +66,14 @@ public class PlayerMovement : MonoBehaviour
         {
             canMove = true;
             moveDirection = Vector2.zero;
-            animationMove= Vector2.zero;
+            animationMove = Vector2.zero;
         }
         else if (canMove && !playerMoving)
         {
-            if(currentFloorTile == null)
+            if (currentFloorTile == null)
                 currentFloorTile = this.transform.parent;
             bool canWalk = IsTileWalkable(currentFloorTile);
+            Debug.Log("it is calling here!" + canWalk);
             if (movetempDirection != Vector2.zero && moveDirection != movetempDirection && canWalk)
             {
                 moveDirection = movetempDirection;
@@ -93,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
             if (Vector3.Distance(animationMove, Vector2.zero) < 0.65f)
             {
                 transform.localPosition = Vector2.zero;
-                if(this.transform.parent.GetChild(0).gameObject.CompareTag("Button"))
+                if (this.transform.parent.GetChild(0).gameObject.CompareTag("Button"))
                 {
                     colorObject = this.transform.parent.GetChild(0).gameObject;
                     Renderer objectRenderer = colorObject.GetComponent<Renderer>();
@@ -109,41 +110,41 @@ public class PlayerMovement : MonoBehaviour
     private void TryMove(Vector2 direction)
     {
         //Debug.Log("hit: " + nextFloorTile.gameObject.tag);
-        
+
         Transform playerDir = transform.GetChild(0).transform;
-        if(direction.x > .1f)
+        if (direction.x > .1f)
         {
             playerDir.rotation = Quaternion.Euler(0f, 0f, -90f);
-            playerDir.localPosition = new Vector2(.1f,0f);
+            playerDir.localPosition = new Vector2(.1f, 0f);
             facingDir = 1;
         }
-        else if(direction.x < -.1f)
+        else if (direction.x < -.1f)
         {
             playerDir.rotation = Quaternion.Euler(0f, 0f, 90f);
-            playerDir.localPosition = new Vector2(-.1f,0f);
+            playerDir.localPosition = new Vector2(-.1f, 0f);
             facingDir = 3;
         }
-        else if(direction.y < -.1f)
+        else if (direction.y < -.1f)
         {
             playerDir.rotation = Quaternion.Euler(0f, 0f, 180f);
-            playerDir.localPosition = new Vector2(0f,-0.1f);
+            playerDir.localPosition = new Vector2(0f, -0.1f);
             facingDir = 2;
         }
-        else if(direction.y > .1f)
+        else if (direction.y > .1f)
         {
             playerDir.rotation = Quaternion.Euler(0f, 0f, 0f);
-            playerDir.localPosition = new Vector2(0f,0.1f);
+            playerDir.localPosition = new Vector2(0f, 0.1f);
             facingDir = 0;
         }
 
-        if(isSubscribed)
+        if (isSubscribed)
         {
             direction = direction + subDirection;
         }
 
         Transform nextFloorTile = GetFloorTileTransform(direction);
 
-        if(isSubscribed && !tagConditons(nextFloorTile))
+        if (isSubscribed && !tagConditons(nextFloorTile))
         {
             direction = direction - subDirection;
             nextFloorTile = GetFloorTileTransform(direction);
@@ -152,25 +153,29 @@ public class PlayerMovement : MonoBehaviour
 
         if (nextFloorTile != null)
         {
-            if ((IsTileWalkable(nextFloorTile) || (nextFloorTile.GetChild(0) != null && (nextFloorTile.GetChild(0).gameObject.CompareTag("BatteryContainer") || nextFloorTile.GetChild(0).gameObject.CompareTag("WireKnob")))))
+            if ((IsTileWalkable(nextFloorTile) || (nextFloorTile.childCount > 0)))
             {
-                if (isSubscribed)
+                if (IsTileWalkable(nextFloorTile) || (nextFloorTile.GetChild(0).gameObject.CompareTag("BatteryContainer") || nextFloorTile.GetChild(0).gameObject.CompareTag("WireKnob")))
                 {
-                    direction = direction - subDirection;
-                    nextFloorTile = GetFloorTileTransform(direction);
-                    if (!IsTileWalkable(nextFloorTile))
-                        return;
+                    if (isSubscribed)
+                    {
+                        direction = direction - subDirection;
+                        nextFloorTile = GetFloorTileTransform(direction);
+                        if (!IsTileWalkable(nextFloorTile))
+                            return;
+                    }
+                    currentFloorTile = nextFloorTile;
+                    transform.SetParent(currentFloorTile);
+                    animationMove = transform.localPosition;
+                    playerMoving = true;
                 }
-                currentFloorTile = nextFloorTile;
-                transform.SetParent(currentFloorTile);
-                animationMove = transform.localPosition;
-                playerMoving = true;
             }
         }
     }
 
     private bool IsTileWalkable(Transform floorTile)
     {
+        Debug.Log(floorTile.GetComponent<compTypes.CanWalk>().isWalkable());
         return floorTile != null && floorTile.GetComponent<compTypes.CanWalk>().isWalkable() == true;
     }
 
@@ -184,12 +189,12 @@ public class PlayerMovement : MonoBehaviour
 
     bool tagConditons(Transform fTile)
     {
-        if(fTile != null && fTile.childCount > 1)
+        if (fTile != null && fTile.childCount > 1)
         {
-            for(int i = 0; i < fTile.childCount; i++)
+            for (int i = 0; i < fTile.childCount; i++)
             {
-                if(fTile.GetChild(i).gameObject.CompareTag("Battery"))
-                return false;
+                if (fTile.GetChild(i).gameObject.CompareTag("Battery"))
+                    return false;
             }
         }
         return true;
