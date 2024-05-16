@@ -3606,6 +3606,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.b
+      value: 0.023529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.g
+      value: 0.99215686
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.r
+      value: 0.13725491
+      objectReference: {fileID: 0}
     - target: {fileID: 5981688261481891532, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
       propertyPath: m_Name
       value: Wire_Knob
@@ -5259,6 +5271,18 @@ PrefabInstance:
     - target: {fileID: 1993358150728517124, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.b
+      value: 0.023529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.g
+      value: 0.99215686
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809687710391053269, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
+      propertyPath: WireColor.r
+      value: 0.13725491
       objectReference: {fileID: 0}
     - target: {fileID: 5981688261481891532, guid: 44a25c1c68eebb54d9971bf853492bcb, type: 3}
       propertyPath: m_Name
@@ -8252,6 +8276,30 @@ PrefabInstance:
     - target: {fileID: 2753658063429107, guid: addebea7a97b9493a95a20ef46f38c76, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801610171147966385, guid: addebea7a97b9493a95a20ef46f38c76, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801610171147966385, guid: addebea7a97b9493a95a20ef46f38c76, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801610171147966385, guid: addebea7a97b9493a95a20ef46f38c76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1981709134, guid: c5c23844f4ec3478995454b2458f50d5, type: 3}
+    - target: {fileID: 1801610171147966385, guid: addebea7a97b9493a95a20ef46f38c76, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801610171147966385, guid: addebea7a97b9493a95a20ef46f38c76, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1023550925
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801610171147966385, guid: addebea7a97b9493a95a20ef46f38c76, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8105471467258673880, guid: addebea7a97b9493a95a20ef46f38c76, type: 3}
       propertyPath: m_LocalPosition.x
