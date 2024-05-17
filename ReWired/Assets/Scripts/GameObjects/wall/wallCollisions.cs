@@ -27,7 +27,7 @@ public class wallCollisions : MonoBehaviour
                 tileWorldLocations.Add(place); 
             } 
         } 
-        print(tileWorldLocations); 
+        //print(tileWorldLocations); 
 
 
         //for each wall we get in the tilemap set the editor tile under it to not walkable
@@ -44,12 +44,5 @@ public class wallCollisions : MonoBehaviour
             ray.transform.GetComponent<CanWalk>().setWall(true);
 
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
