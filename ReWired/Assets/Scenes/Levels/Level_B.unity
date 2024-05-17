@@ -5514,7 +5514,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2238950572927120363, guid: b9413af6594f4454fb3bbc846b75aa91, type: 3}
       propertyPath: m_Name
-      value: WireNub_Red
+      value: WireNub_Red1
       objectReference: {fileID: 0}
     - target: {fileID: 8151946385454007799, guid: b9413af6594f4454fb3bbc846b75aa91, type: 3}
       propertyPath: otherWireNode

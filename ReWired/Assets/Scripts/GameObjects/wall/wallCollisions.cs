@@ -38,7 +38,7 @@ public class wallCollisions : MonoBehaviour
             RaycastHit2D ray;
             ray = Physics2D.Raycast(boardConversion, Vector2.right,0.1f);
 
-            Debug.Log("wall || " + wall + " || " + "boardConversion || " + boardConversion + " || " + ray.transform.name + " || " + ray.transform.position);
+            //Debug.Log("wall || " + wall + " || " + "boardConversion || " + boardConversion + " || " + ray.transform.name + " || " + ray.transform.position);
 
             ray.transform.GetComponent<CanWalk>().setWalkable(false);
             ray.transform.GetComponent<CanWalk>().setWall(true);

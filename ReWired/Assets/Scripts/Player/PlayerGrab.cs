@@ -78,8 +78,8 @@ public class PlayerGrab : MonoBehaviour
             {
                 if (hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>() != null)
                 {
-                    hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().grabbed();
-                    hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().otherWireNode.gameObject.GetComponent<DrawWire>().grabbed();
+                    hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().grabbed(true);
+                    hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().setother(true);
                 }
             }
 
@@ -108,8 +108,8 @@ public class PlayerGrab : MonoBehaviour
                 if(floorTile.transform.GetChild(0).gameObject.GetComponent<DrawWire>() != null)
                 {
                     Debug.Log("why");
-                    floorTile.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().woo();
-                    floorTile.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().otherWireNode.gameObject.GetComponent<DrawWire>().woo();
+                    floorTile.transform.GetChild(0).gameObject.GetComponent<DrawWire>().grabbed(false);
+                    floorTile.transform.GetChild(0).gameObject.GetComponent<DrawWire>().setother(false);
                 }
             }
         }

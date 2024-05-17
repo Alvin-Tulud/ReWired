@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             if (currentFloorTile == null)
                 currentFloorTile = this.transform.parent;
             bool canWalk = IsTileWalkable(currentFloorTile);
-            Debug.Log("it is calling here!" + canWalk);
+            //Debug.Log("it is calling here!" + canWalk);
             if (movetempDirection != Vector2.zero && moveDirection != movetempDirection && canWalk)
             {
                 moveDirection = movetempDirection;
@@ -175,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsTileWalkable(Transform floorTile)
     {
-        Debug.Log(floorTile.GetComponent<compTypes.CanWalk>().isWalkable());
+        //Debug.Log(floorTile.GetComponent<compTypes.CanWalk>().isWalkable());
         return floorTile != null && floorTile.GetComponent<compTypes.CanWalk>().isWalkable() == true;
     }
 

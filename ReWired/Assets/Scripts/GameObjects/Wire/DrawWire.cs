@@ -9,31 +9,15 @@ public class DrawWire : MonoBehaviour
     public Transform otherWireNode;
     public LineRenderer wireLine;
     public Color32 wireColor;
-    LayerMask wireLayerMask;
 
 
-    //RaycastHit2D[] rayright;
-    //RaycastHit2D[] rayleft;
     public RaycastHit2D[] tilesStates;
     bool isGrabbed;
-
-
-    static int Connect = 0;
-    private int WireID;
-
-    private void Awake()
-    {
-        //talking between all wirenubs to assign them ids
-        WireID = Connect;
-        Connect++;
-    }
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        wireLayerMask = 1 << 8;
-
-
         wireLine = GetComponent<LineRenderer>();
         wireLine.startColor = wireColor;
         wireLine.endColor = wireColor;
@@ -57,11 +41,8 @@ public class DrawWire : MonoBehaviour
         tilesStates = Physics2D.CircleCastAll(transform.position, 0.35f, direction, distance, 1 << 8 | 1 << 31);
         
 
-        Debug.DrawLine(transform.position, otherWireNode.position,Color.red, distance);
-        Debug.DrawRay(transform.position, otherWireNode.position, Color.black, distance);
-        Debug.DrawRay(transform.position, direction, Color.blue, distance);
 
-        Debug.Log("Grabbed: " + isGrabbed + " Gameobject: " + this.transform.name);
+        Debug.DrawRay(transform.position, direction, Color.blue, distance);
 
         if (!isGrabbed)
         {
@@ -85,14 +66,14 @@ public class DrawWire : MonoBehaviour
         }
     }
 
-    public void grabbed()
+    public void grabbed(bool grab)
     {
-        isGrabbed = true;
+        isGrabbed = grab;
+        Debug.Log("Grabbed: " + isGrabbed + " Gameobject: " + this.transform.name);
     }
 
-
-    public void woo()
+    public void setother(bool grab)
     {
-        isGrabbed = false;
+        otherWireNode.gameObject.GetComponent<DrawWire>().grabbed(grab);
     }
 }
