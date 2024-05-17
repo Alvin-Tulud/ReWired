@@ -4,11 +4,18 @@ namespace GridObjects.Components.CompTypes
 {
     public class CanWalk : MonoBehaviour
     {
-        [SerializeField]
+        
         private bool walkable;
         private bool isWall = false;
 
-        
+        private void Awake()
+        {
+            if (gameObject.CompareTag("Floor"))
+            {
+                walkable = true;
+            }
+        }
+
         public bool isWalkable()
         {
             return walkable;
@@ -18,6 +25,7 @@ namespace GridObjects.Components.CompTypes
         {
             if (!isWall)
             {
+                //Debug.Log(walk);
                 walkable = walk;
             }
         }

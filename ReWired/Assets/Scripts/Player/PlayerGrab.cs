@@ -74,11 +74,12 @@ public class PlayerGrab : MonoBehaviour
                 Debug.Log(hold.transform.parent.GetChild(0).transform.name);
                 hold.transform.parent.GetChild(0).gameObject.GetComponent<BatteryContainerCheck>().updateFlowSource(false);
             }
-            else if (hold.transform.parent.GetChild(0).gameObject.CompareTag("Floor"))
+            else if (hold.transform.parent.GetChild(0).gameObject.CompareTag("WireNub"))
             {
-                if (hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>() == null)
+                if (hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>() != null)
                 {
                     hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().grabbed();
+                    hold.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().otherWireNode.gameObject.GetComponent<DrawWire>().grabbed();
                 }
             }
 
@@ -102,11 +103,13 @@ public class PlayerGrab : MonoBehaviour
                 //Andrew: Updates the battery container
                 floorTile.transform.GetChild(0).gameObject.GetComponent<BatteryContainerCheck>().updateFlowSource(true);
             }
-            else if (floorTile.transform.GetChild(0).gameObject.CompareTag("BatteryContainer"))
+            else if (floorTile.transform.GetChild(0).gameObject.CompareTag("WireNub"))
             {
-                if(floorTile.transform.GetChild(0).gameObject.GetComponent<DrawWire>() == null)
+                if(floorTile.transform.GetChild(0).gameObject.GetComponent<DrawWire>() != null)
                 {
-                    floorTile.transform.GetChild(0).gameObject.GetComponent<DrawWire>().notGrab();
+                    Debug.Log("why");
+                    floorTile.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().woo();
+                    floorTile.transform.parent.GetChild(0).gameObject.GetComponent<DrawWire>().otherWireNode.gameObject.GetComponent<DrawWire>().woo();
                 }
             }
         }

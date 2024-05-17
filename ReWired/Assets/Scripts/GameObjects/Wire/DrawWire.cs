@@ -7,7 +7,7 @@ using UnityEngine;
 public class DrawWire : MonoBehaviour
 {
     public Transform otherWireNode;
-    LineRenderer wireLine;
+    public LineRenderer wireLine;
     public Color32 wireColor;
     LayerMask wireLayerMask;
 
@@ -15,7 +15,6 @@ public class DrawWire : MonoBehaviour
     //RaycastHit2D[] rayright;
     //RaycastHit2D[] rayleft;
     public RaycastHit2D[] tilesStates;
-    public List<GameObject> tilesStateSwitched;
     bool isGrabbed;
 
 
@@ -56,19 +55,13 @@ public class DrawWire : MonoBehaviour
             Mathf.Pow(otherWireNode.position.y - transform.position.y, 2), 0.5f);
 
         tilesStates = Physics2D.CircleCastAll(transform.position, 0.35f, direction, distance, 1 << 8 | 1 << 31);
-        foreach (RaycastHit2D ray in tilesStates)
-        {
-            if (!tilesStateSwitched.Contains(ray.transform.gameObject))
-            {
-                tilesStateSwitched.Add(ray.transform.gameObject);
-            }
-        }
-
         
 
         Debug.DrawLine(transform.position, otherWireNode.position,Color.red, distance);
         Debug.DrawRay(transform.position, otherWireNode.position, Color.black, distance);
         Debug.DrawRay(transform.position, direction, Color.blue, distance);
+
+        Debug.Log("Grabbed: " + isGrabbed + " Gameobject: " + this.transform.name);
 
         if (!isGrabbed)
         {
@@ -80,22 +73,25 @@ public class DrawWire : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            foreach (var tile in tilesStates)
+            {
+                if (tile.transform.gameObject.GetComponent<CanWalk>() != null)
+                {
+                    tile.transform.gameObject.GetComponent<CanWalk>().setWalkable(true);
+                }
+            }
+        }
     }
 
     public void grabbed()
     {
         isGrabbed = true;
-
-        foreach (var tile in tilesStates)
-        {
-            if (tile.transform.gameObject.GetComponent<CanWalk>() != null)
-            {
-                tile.transform.gameObject.GetComponent<CanWalk>().setWalkable(true);
-            }
-        }
     }
 
-    public void notGrab()
+
+    public void woo()
     {
         isGrabbed = false;
     }
