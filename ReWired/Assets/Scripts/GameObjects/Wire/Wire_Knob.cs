@@ -50,4 +50,11 @@ public class Wire_Knob : FlowReceiverParent
             hasNub = false;
         }
     } 
+
+
+
+    public bool getNub()
+    {
+        return hasNub;
+    }
 }

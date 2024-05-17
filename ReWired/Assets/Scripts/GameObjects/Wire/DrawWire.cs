@@ -12,6 +12,7 @@ public class DrawWire : MonoBehaviour
 
 
     public RaycastHit2D[] tilesStates;
+    public List<GameObject> tiles = new List<GameObject>();
     bool isGrabbed;
     
 
@@ -39,6 +40,14 @@ public class DrawWire : MonoBehaviour
             Mathf.Pow(otherWireNode.position.y - transform.position.y, 2), 0.5f);
 
         tilesStates = Physics2D.CircleCastAll(transform.position, 0.35f, direction, distance, 1 << 8 | 1 << 31);
+
+        foreach (var v in tilesStates)
+        {
+            if (!tiles.Contains(v.transform.gameObject))
+            {
+                tiles.Add(v.transform.gameObject);
+            }
+        }
         
 
 
@@ -68,6 +77,13 @@ public class DrawWire : MonoBehaviour
 
     public void grabbed(bool grab)
     {
+        foreach (var tile in tiles)
+        {
+            if (tile.transform.gameObject.GetComponent<CanWalk>() != null)
+            {
+                tile.transform.gameObject.GetComponent<CanWalk>().setWalkable(true);
+            }
+        }
         isGrabbed = grab;
         Debug.Log("Grabbed: " + isGrabbed + " Gameobject: " + this.transform.name);
     }

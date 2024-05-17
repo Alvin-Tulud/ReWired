@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 // using UnityEngine.SceneManagement;
 using UnityEngine.SceneManagement;
@@ -5,10 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class DoorScript : MonoBehaviour
 {
-    public bool isOn = false;
+    public bool isOn = true;
 
     private void Update()
     {
+        GameObject[] knobs = GameObject.FindGameObjectsWithTag("WireKnob");
+
+        isOn = true;
+
+
+        foreach (var v in knobs)
+        {
+            if (!v.GetComponent<Wire_Knob>().getNub())
+            {
+                isOn = false;
+            }
+        }
+
+
+
 
         if (transform.parent.childCount > 1)
         {
