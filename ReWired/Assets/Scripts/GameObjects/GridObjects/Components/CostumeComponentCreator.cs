@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEditor;
 using System;
 using System.Collections.Generic;
@@ -152,3 +152,4 @@ namespace GridObjects.Components.CompTypes
             return template;
         }
 }
+*/

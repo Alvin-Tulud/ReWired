@@ -43,6 +43,11 @@ public class DoorScript : MonoBehaviour
                         Debug.Log("Player Win");
                         SceneManager.LoadScene(sceneIndex + 1);
                     }
+                    else if (sceneIndex == maxSceneIndex && isOn)
+                    {
+                        Debug.Log("Player Win");
+                        SceneManager.LoadScene(0);
+                    }
                 }
             }
         }
